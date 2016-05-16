@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 
 /**
  *
@@ -19,12 +20,11 @@ import javafx.scene.control.Label;
 public class GameViewController implements Initializable {
     
     @FXML
-    private Label label;
+    GridPane gameBoard = new GridPane();
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+       
     }
     
     @Override

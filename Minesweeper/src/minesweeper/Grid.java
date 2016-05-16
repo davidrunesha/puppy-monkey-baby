@@ -12,7 +12,7 @@ import javafx.scene.layout.GridPane;
  * @author Jacob Shkrob and David Runesha
  */
 public class Grid extends Parent {
-    GridPane gameBoard = new GridPane();
+    
    
     public Grid(){
         
