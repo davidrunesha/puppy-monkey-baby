@@ -13,6 +13,7 @@ public class Tile {
     public int X_POSITION;
     public int Y_POSITION;
     public boolean hasBomb;
+    public int adjacentBombs;
     
     public Tile(int x, int y, boolean hasB){
         X_POSITION = x;
@@ -21,7 +22,7 @@ public class Tile {
     }
     
     public int adjacentBombs(){
-        
+        return adjacentBombs;
     }
     
     public int getX(){
