@@ -15,7 +15,24 @@ public class Tile {
     public boolean hasBomb;
     
     public Tile(int x, int y, boolean hasB){
-        
+        X_POSITION = x;
+        Y_POSITION = y;
+        hasBomb = hasB;
+    }
     
+    public int adjacentBombs(){
+        
+    }
+    
+    public int getX(){
+        return X_POSITION;
+    }
+    
+    public int getY(){
+        return Y_POSITION;
+    }
+    
+    public boolean ifBomb(){
+        return hasBomb;
     }
 }
