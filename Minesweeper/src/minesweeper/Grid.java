@@ -6,15 +6,15 @@
 package minesweeper;
 
 import javafx.scene.Parent;
-import javafx.scene.layout.GridPane
+import javafx.scene.layout.GridPane;
 /**
  *
  * @author Jacob Shkrob and David Runesha
  */
 public class Grid extends Parent {
-    public final Tile[][] = new Tile[10][10];
+    GridPane gameBoard = new GridPane();
    
-    public GameBoard(){
+    public Grid(){
         
     }
 }
