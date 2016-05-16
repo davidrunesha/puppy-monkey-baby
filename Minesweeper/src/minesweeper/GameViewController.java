@@ -18,9 +18,9 @@ import javafx.scene.layout.GridPane;
  * @author dwheadon
  */
 public class GameViewController implements Initializable {
-    
     @FXML
     GridPane gameBoard = new GridPane();
+    gameBoard.add(new Button(), 1, 1);
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
