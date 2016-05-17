@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
  * @author dwheadon
  */
 public class Minesweeper extends Application {
+    GridPane gridPane = new Grid;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,6 +27,15 @@ public class Minesweeper extends Application {
         
         stage.setScene(scene);
         stage.show();
+       
+        for(int i = 0; i++; i < 10){
+            for(int k = 0; k++; k < 10){
+                gridPane.add(new Button(), i, k);
+            }
+        }
+        
+        
+        
     }
 
     /**
