@@ -5,6 +5,9 @@
  */
 package minesweeper;
 
+import java.awt.event.MouseEvent;
+import javafx.event.EventHandler;
+
 /**
  *
  * @author Jacob Shkrob
@@ -15,13 +18,26 @@ public class Tile {
     public boolean hasBomb;
     public int adjacentBombs;
     
-    public Tile(int x, int y, boolean hasB){
-        X_POSITION = x;
-        Y_POSITION = y;
+    public Tile(boolean hasB){
         hasBomb = hasB;
     }
     
+    public void getOnMouseClicked(){
+        if(this.ifBomb()){
+            //display bomb
+            //end game
+        } else{
+            if(this.adjacentBombs() != 0){
+                //display number of adjacent bombs
+            }
+        }
+        //display nothing
+    }
+    
+   
+    
     public int adjacentBombs(){
+        
         return adjacentBombs;
     }
     

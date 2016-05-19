@@ -5,11 +5,13 @@
  */
 package minesweeper;
 
+import javafx.geometry.Insets;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
@@ -17,7 +19,8 @@ import javafx.stage.Stage;
  * @author dwheadon
  */
 public class Minesweeper extends Application {
-    GridPane gridPane = new Grid;
+    GridPane gameBoard = new GridPane();
+    
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,15 +28,35 @@ public class Minesweeper extends Application {
         
         Scene scene = new Scene(root);
         
-        stage.setScene(scene);
-        stage.show();
-       
-        for(int i = 0; i++; i < 10){
-            for(int k = 0; k++; k < 10){
-                gridPane.add(new Button(), i, k);
+        GridPane gameBoard = new GridPane();
+        Insets insets = new Insets(0, 10, 0, 10);
+        
+        gameBoard.setHgap(10);
+        gameBoard.setVgap(10);
+        gameBoard.setPadding(insets);
+        
+        
+        //add tiles to the 
+        /*
+        for(int i = 0; i < 10; i++){
+            for(int k = 0; k < 10; k++){
+                gameBoard.add((new Tile(true)), i, k);
             }
         }
+        */
         
+        
+        
+        stage.setScene(scene);
+        stage.show();
+        
+        /*    
+        for(int i = 0; i++; i < 10){
+            for(int k = 0; k++; k < 10){
+                gameBoard.add(new Button(), i, k);
+            }
+        }
+        */
         
         
     }
