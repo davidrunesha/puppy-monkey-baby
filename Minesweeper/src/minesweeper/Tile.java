@@ -16,17 +16,20 @@ import javafx.scene.text.Text;
  * @author Jacob Shkrob
  */
 public class Tile extends Button {
-   
+    private int x, y;
     private boolean hasBomb;
     private int adjacentBombs;
     private Text text = new Text();
     
     
-    public Tile(boolean hasB){
-        hasBomb = hasB;
+    public Tile(int x, int y, boolean hasBomb){
+        this.x = x;
+        this.y = y;
+        this.hasBomb = hasBomb;
     }
-    @Override
-    public EventHandler<ActionEvent> getOnAction(){
+    
+      
+    public void handle(ActionEvent e){
         
     }
     /*
@@ -52,11 +55,11 @@ public class Tile extends Button {
     }
     
     public int getX(){
-        return X_POSITION;
+        return x;
     }
     
     public int getY(){
-        return Y_POSITION;
+        return y;
     }
     
     public boolean ifBomb(){

@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 public class Minesweeper extends Application {
     GridPane gameBoard = new GridPane();
     
+    private Tile[][] gridArray = new Tile[10][10];
     
     
     public Parent createGameBoard(){
@@ -30,11 +31,13 @@ public class Minesweeper extends Application {
        root.setHgap(10);
        root.setVgap(10);
        root.setPadding(insets);
-        
+      
         //add tiles to the gridpane
-       for(int i = 0; i < 10; i++){
-        for(int j = 0; j < 10; j++){   
-           root.add(new Tile(true), i, j);
+       for(int x = 0; x < 10; x++){
+        for(int y = 0; y < 10; y++){   
+           Tile newTile = new Tile(x, y, Math.random() <= 0.2);
+           gridArray[x][y] = newTile;
+           root.add(newTile, x, y);
         }
        }
        return root; 
