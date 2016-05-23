@@ -6,22 +6,31 @@
 package minesweeper;
 
 import java.awt.event.MouseEvent;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
 /**
  *
  * @author Jacob Shkrob
  */
-public class Tile {
-    public int X_POSITION;
-    public int Y_POSITION;
-    public boolean hasBomb;
-    public int adjacentBombs;
+public class Tile extends Button {
+   
+    private boolean hasBomb;
+    private int adjacentBombs;
+    private Text text = new Text();
+    
     
     public Tile(boolean hasB){
         hasBomb = hasB;
     }
-    
+    @Override
+    public EventHandler<ActionEvent> getOnAction(){
+        
+    }
+    /*
+    @Override
     public void getOnMouseClicked(){
         if(this.ifBomb()){
             //display bomb
@@ -33,9 +42,10 @@ public class Tile {
         }
         //display nothing
     }
+    */
     
    
-    
+    //will do in later sprint isn't necessary
     public int adjacentBombs(){
         
         return adjacentBombs;

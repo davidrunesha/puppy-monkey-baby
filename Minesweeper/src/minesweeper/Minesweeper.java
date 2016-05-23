@@ -22,31 +22,29 @@ public class Minesweeper extends Application {
     GridPane gameBoard = new GridPane();
     
     
+    
+    public Parent createGameBoard(){
+       GridPane root = new GridPane();
+       Insets insets = new Insets(0, 10, 0, 10);
+        
+       root.setHgap(10);
+       root.setVgap(10);
+       root.setPadding(insets);
+        
+        //add tiles to the gridpane
+       for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){   
+           root.add(new Tile(true), i, j);
+        }
+       }
+       return root; 
+    }
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("GameView.fxml"));
         
-        Scene scene = new Scene(root);
-        
-        GridPane gameBoard = new GridPane();
-        Insets insets = new Insets(0, 10, 0, 10);
-        
-        gameBoard.setHgap(10);
-        gameBoard.setVgap(10);
-        gameBoard.setPadding(insets);
-        
-        
-        //add tiles to the 
-        /*
-        for(int i = 0; i < 10; i++){
-            for(int k = 0; k < 10; k++){
-                gameBoard.add((new Tile(true)), i, k);
-            }
-        }
-        */
-        
-        
-        
+        Scene scene = new Scene(createGameBoard());
         stage.setScene(scene);
         stage.show();
         
