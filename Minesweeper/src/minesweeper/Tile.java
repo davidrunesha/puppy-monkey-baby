@@ -30,7 +30,13 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
     
     @Override
     public void handle(ActionEvent e){
-        System.out.println("Hello world");
+        if(this.getBomb()){
+            
+            
+            System.out.println("YOU LOOSE");
+        }
+        
+        //System.out.println("Hello world");
     }
     /*
     @Override
@@ -62,7 +68,7 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
         return y;
     }
     
-    public boolean ifBomb(){
+    public boolean getBomb(){
         return hasBomb;
     }
 }

@@ -5,6 +5,7 @@
  */
 package minesweeper;
 
+import java.util.List;
 import javafx.geometry.Insets;
 import javafx.application.Application;
 import javafx.event.EventType;
@@ -36,13 +37,25 @@ public class Minesweeper extends Application {
         //add tiles to the gridpane
        for(int x = 0; x < 10; x++){
         for(int y = 0; y < 10; y++){   
-           Tile newTile = new Tile(x, y, Math.random() <= 0.2);
+           Tile newTile = new Tile(x, y, Math.random() <= 0.23);
            newTile.setOnAction(newTile);
            gridArray[x][y] = newTile;
            root.add(newTile, x, y);
         }
        }
+       for(int i =0; i<10; i++){
+           for(int h=0; h<10; h++){
+               //put the numbers in the designated tiles
+               //for later sprint
+           }
+       }
        return root; 
+    }
+    
+    public List<Tile> getAdjacentBombs(){
+        List<Tile> adjacentBombs = new List<Tile>();
+        //implement here
+        
     }
     
     @Override
