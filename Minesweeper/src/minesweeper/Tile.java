@@ -33,7 +33,7 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
         if(this.getBomb()){
             
             
-            System.out.println("YOU LOOSE");
+            System.out.println("YOU LOSE");
         }
         
         //System.out.println("Hello world");

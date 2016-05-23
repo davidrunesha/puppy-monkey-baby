@@ -43,20 +43,22 @@ public class Minesweeper extends Application {
            root.add(newTile, x, y);
         }
        }
+       /*
        for(int i =0; i<10; i++){
            for(int h=0; h<10; h++){
                //put the numbers in the designated tiles
                //for later sprint
            }
        }
+       */
        return root; 
     }
     
-    public List<Tile> getAdjacentBombs(){
-        List<Tile> adjacentBombs = new List<Tile>();
+    //public List<Tile> getAdjacentBombs(){}
+        //List<Tile> adjacentBombs = new List<Tile>();
         //implement here
         
-    }
+    
     
     @Override
     public void start(Stage stage) throws Exception {
