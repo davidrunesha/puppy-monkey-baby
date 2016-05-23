@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
  *
  * @author Jacob Shkrob
  */
-public class Tile extends Button {
+public class Tile extends Button implements EventHandler<ActionEvent> {
     private int x, y;
     private boolean hasBomb;
     private int adjacentBombs;
@@ -28,9 +28,9 @@ public class Tile extends Button {
         this.hasBomb = hasBomb;
     }
     
-      
+    @Override
     public void handle(ActionEvent e){
-        
+        System.out.println("Hello world");
     }
     /*
     @Override

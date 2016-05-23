@@ -7,6 +7,7 @@ package minesweeper;
 
 import javafx.geometry.Insets;
 import javafx.application.Application;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -36,6 +37,7 @@ public class Minesweeper extends Application {
        for(int x = 0; x < 10; x++){
         for(int y = 0; y < 10; y++){   
            Tile newTile = new Tile(x, y, Math.random() <= 0.2);
+           newTile.setOnAction(newTile);
            gridArray[x][y] = newTile;
            root.add(newTile, x, y);
         }
