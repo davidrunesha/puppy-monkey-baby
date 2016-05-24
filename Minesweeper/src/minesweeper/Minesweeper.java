@@ -5,6 +5,7 @@
  */
 package minesweeper;
 
+import java.util.ArrayList;
 import java.util.List;
 import javafx.geometry.Insets;
 import javafx.application.Application;
@@ -20,14 +21,14 @@ import javafx.stage.Stage;
  *
  * @author dwheadon
  */
-public class Minesweeper extends Application {
+public class Minesweeper extends Application{
     GridPane gameBoard = new GridPane();
     
-    private Tile[][] gridArray = new Tile[10][10];
+    public Tile[][] gridArray = new Tile[10][10];
     
-    
+    private GridPane root;
     public Parent createGameBoard(){
-       GridPane root = new GridPane();
+       root = new GridPane();
        Insets insets = new Insets(0, 10, 0, 10);
         
        root.setHgap(10);
@@ -53,12 +54,50 @@ public class Minesweeper extends Application {
        */
        return root; 
     }
-    
-    //public List<Tile> getAdjacentBombs(){}
-        //List<Tile> adjacentBombs = new List<Tile>();
-        //implement here
-        
-    
+    /*
+    public int getAdjacentBombs(Tile t){ 
+        List<Tile> adjacentTiles = new ArrayList<Tile>();
+        int[] surroundingCoordX = new int[] {
+            -1, 
+            -1,
+            -1,
+             0, 
+             0,
+             0,
+             1, 
+             1, 
+             1
+        };
+        int[] surroundingCoordY = new int[] {
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+        };
+        int surroundingTimes = surroundingCoordX.length; 
+            //o o o
+            //o X o
+            //o o o
+        for(int i=0; i<surroundingTimes; i++){
+            int tempX = surroundingCoordX[i];
+            int tempY = surroundingCoordY[i];
+            //put it into representation
+            int actualX = this.x + tempX;
+            int actualY = this.y + tempY;
+            
+            //make sure that the size doesn't go past the gridspace
+            if(actualX >= 0 && actualX <= gridArray.size() ){
+                
+                
+            }
+        }
+    }    
+    */
     
     @Override
     public void start(Stage stage) throws Exception {

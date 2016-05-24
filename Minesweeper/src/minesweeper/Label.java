@@ -10,5 +10,9 @@ package minesweeper;
  * @author Jacob Shkrob
  */
 class Label {
+
+    Label(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
