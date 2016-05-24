@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.scene.layout.GridPane; 
+import javax.swing.JButton;
 /**
  *
  * @author Jacob Shkrob
@@ -35,8 +36,9 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
     public void handle(ActionEvent e){
         if(this.getBomb()){
             text = "X";
-            Label showInfo = new Label(text);
+            //Label showInfo = new Label(text);
             //gameBoard.add(showInfo, this.getX(), this.getY())
+            this.setText(text);
             System.out.println("YOU LOSE");
         }
         //System.out.println("Hello world");

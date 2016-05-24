@@ -55,6 +55,7 @@ public class Minesweeper extends Application{
        return root; 
     }
     /*
+    
     public int getAdjacentBombs(Tile t){ 
         List<Tile> adjacentTiles = new ArrayList<Tile>();
         int[] surroundingCoordX = new int[] {
@@ -87,8 +88,8 @@ public class Minesweeper extends Application{
             int tempX = surroundingCoordX[i];
             int tempY = surroundingCoordY[i];
             //put it into representation
-            int actualX = this.x + tempX;
-            int actualY = this.y + tempY;
+            int actualX = this.getX()  + tempX;
+            int actualY = this.getY() + tempY;
             
             //make sure that the size doesn't go past the gridspace
             if(actualX >= 0 && actualX <= gridArray.size() ){
