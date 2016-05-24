@@ -7,7 +7,7 @@ package minesweeper;
 
 /**
  *
- * @author Jacob Shkrob
+ * @author Jacob Shkrob and David Runesha
  */
 class Label {
 
