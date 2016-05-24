@@ -40,6 +40,8 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
             //gameBoard.add(showInfo, this.getX(), this.getY())
             this.setText(text);
             System.out.println("YOU LOSE");
+            setTimeout(handle, 3000);
+            System.exit(0);
         }
         //System.out.println("Hello world");
     }
