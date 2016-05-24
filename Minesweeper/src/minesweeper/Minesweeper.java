@@ -25,8 +25,7 @@ import javafx.stage.Stage;
  */
 public class Minesweeper extends Application{
     GridPane gameBoard = new GridPane();
-    
-    public Tile[][] gridArray = new Tile[10][10];
+    public static Tile[][] gridArray = new Tile[10][10];
     
     private GridPane root;
     public Parent createGameBoard(){
@@ -42,6 +41,7 @@ public class Minesweeper extends Application{
         for(int y = 0; y < 10; y++){   
            Tile newTile = new Tile(x, y, Math.random() <= 0.23);
            newTile.setOnAction(newTile);
+           
            gridArray[x][y] = newTile;
            root.add(newTile, x, y);
         }
@@ -56,51 +56,24 @@ public class Minesweeper extends Application{
        */
        return root; 
     }
-    /*
-    
-    public int getAdjacentBombs(Tile t){ 
-        List<Tile> adjacentTiles = new ArrayList<Tile>();
-        int[] surroundingCoordX = new int[] {
-            -1, 
-            -1,
-            -1,
-             0, 
-             0,
-             0,
-             1, 
-             1, 
-             1
-        };
-        int[] surroundingCoordY = new int[] {
-            -1,
-            -1,
-            -1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1
-        };
-        int surroundingTimes = surroundingCoordX.length; 
-            //o o o
-            //o X o
-            //o o o
-        for(int i=0; i<surroundingTimes; i++){
-            int tempX = surroundingCoordX[i];
-            int tempY = surroundingCoordY[i];
-            //put it into representation
-            int actualX = this.getX()  + tempX;
-            int actualY = this.getY() + tempY;
-            
-            //make sure that the size doesn't go past the gridspace
-            if(actualX >= 0 && actualX <= gridArray.size() ){
-                
-                
+    public static int getAdjacentBombs(Tile tile){ 
+        int X_POS = tile.getX();
+        int Y_POS = tile.getY();
+        int numBombs = 0;
+        
+        for(int i =-1; i<2; i++){
+            for(int k=-1; k < 2; k++){
+                if(k != 0 && i != 0){
+                    if(gridArray[i][k].ifBomb()){
+                        numBombs = numBombs + 1;
+                    }
+                }
             }
         }
+        
+        return numBombs;
     }    
-    */
+    
     
     @Override
     public void start(Stage stage) throws Exception {

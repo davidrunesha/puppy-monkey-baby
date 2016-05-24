@@ -24,8 +24,6 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
     private int adjacentBombs;
     private String text;
     
-    
-    
     public Tile(int x, int y, boolean hasBomb){
         this.x = x;
         this.y = y;
@@ -34,12 +32,17 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
     
     @Override
     public void handle(ActionEvent e){
-        if(this.getBomb()){
+        if(this.ifBomb()){
             text = "X";
             //Label showInfo = new Label(text);
             //gameBoard.add(showInfo, this.getX(), this.getY())
             this.setText(text);
             System.out.println("YOU LOSE");
+        }else{
+            adjacentBombs = Minesweeper.getAdjacentBombs(this);
+            text = "" + adjacentBombs;
+            this.setText(text);
+        
         }
         //System.out.println("Hello world");
     }
@@ -110,7 +113,7 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
         return y;
     }
     
-    public boolean getBomb(){
+    public boolean ifBomb(){
         return hasBomb;
     }
 }
