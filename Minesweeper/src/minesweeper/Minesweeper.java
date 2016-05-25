@@ -39,9 +39,9 @@ public class Minesweeper extends Application{
        //add tiles to the gridpane
        for(int x = 0; x < 10; x++){
         for(int y = 0; y < 10; y++){   
-           Tile newTile = new Tile(x, y, Math.random() <= 0.23);
-           newTile.setOnAction(newTile);
+           Tile newTile = new Tile(x, y, Math.random() <= 0.2);
            
+           newTile.setOnAction(newTile);
            gridArray[y][x] = newTile;
            root.add(newTile, x, y);
         }
@@ -49,9 +49,10 @@ public class Minesweeper extends Application{
        return root; 
     }
     public static int getAdjacentBombs(Tile tile){ 
+        
         int X_POS = tile.getX();
         int Y_POS = tile.getY();
-       
+        System.out.println("The Tile Corr: (" + X_POS + "," + Y_POS + ")");
         int numBombs = 0;
         
         for(int i =-1; i<2; i++){
@@ -63,14 +64,13 @@ public class Minesweeper extends Application{
                 }   
             }
         }
-        //spreads out the 0 spaces 
+        //FIX!
+        //recursion: spreads out the 0 spaces 
         if(numBombs == 0){
             //start at the leftmost corner of the tile (w/ value 0) and check if it has adjacent bombs
             for(int i =-1; i<2; i++){
                 for(int k=-1; k<2;k++){
-                    if(i==0 && k==0){
-                        break;
-                    }else{
+                    if(X_POS + i >= 0 && X_POS + i < gridArray.length && Y_POS + k >= 0 && Y_POS + k < gridArray.length){
                         Minesweeper.getAdjacentBombs(gridArray[Y_POS + k][X_POS + i]);
                     }
                 }
