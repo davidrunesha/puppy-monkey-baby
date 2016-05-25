@@ -42,18 +42,10 @@ public class Minesweeper extends Application{
            Tile newTile = new Tile(x, y, Math.random() <= 0.23);
            newTile.setOnAction(newTile);
            
-           gridArray[x][y] = newTile;
+           gridArray[y][x] = newTile;
            root.add(newTile, x, y);
         }
        }
-       /*
-       for(int i =0; i<10; i++){
-           for(int h=0; h<10; h++){
-               //put the numbers in the designated tiles
-               //for later sprint
-           }
-       }
-       */
        return root; 
     }
     public static int getAdjacentBombs(Tile tile){ 
@@ -64,13 +56,11 @@ public class Minesweeper extends Application{
         
         for(int i =-1; i<2; i++){
             for(int k=-1; k < 2; k++){
-                if(k != 0 && i != 0){
-                    if(X_POS + i>=0 && X_POS + i <= gridArray.length && Y_POS + i>=0 && Y_POS + i <= gridArray.length){
-                        if(gridArray[X_POS + i][Y_POS + k].ifBomb()){
-                            numBombs = numBombs + 1;
-                        }
-                    }    
-                }
+                if(X_POS + i>=0 && X_POS + i < gridArray.length && Y_POS + i>=0 && Y_POS + i < gridArray.length){
+                    if(gridArray[Y_POS + k][X_POS + i].ifBomb()){
+                        numBombs = numBombs + 1;
+                    }
+                }   
             }
         }
         
