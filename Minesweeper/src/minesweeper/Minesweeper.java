@@ -63,7 +63,19 @@ public class Minesweeper extends Application{
                 }   
             }
         }
-        
+        //spreads out the 0 spaces 
+        if(numBombs == 0){
+            //start at the leftmost corner of the tile (w/ value 0) and check if it has adjacent bombs
+            for(int i =-1; i<2; i++){
+                for(int k=-1; k<2;k++){
+                    if(i==0 && k==0){
+                        break;
+                    }else{
+                        Minesweeper.getAdjacentBombs(gridArray[Y_POS + k][X_POS + i]);
+                    }
+                }
+            }
+        }
         return numBombs;
     }    
     
