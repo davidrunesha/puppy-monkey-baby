@@ -43,7 +43,9 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
             adjacentBombs = Minesweeper.getAdjacentBombs(this);
             text = "" + adjacentBombs;
             this.setText(text);
-        
+            if (adjacentBombs == 0) {
+                Minesweeper.clearZeros(this);
+            }
         }
         //System.out.println("Hello world");
     }

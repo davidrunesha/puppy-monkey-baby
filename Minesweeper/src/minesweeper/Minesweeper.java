@@ -60,14 +60,11 @@ public class Minesweeper extends Application{
                 if(X_POS + i >= 0 && X_POS + i < gridArray.length && Y_POS + k >= 0 && Y_POS + k < gridArray.length){
                     if(gridArray[Y_POS + k][X_POS + i].ifBomb()){
                         numBombs++;
-                        gridArray[Y_POS + k][X_POS + i].beenSearched = true;
                     }
                 }   
             }
         }
-        if(numBombs == 0){
-            Minesweeper.clearZeros(tile);
-        }
+        tile.setText(numBombs+"");
         return numBombs;
     }    
         //FIX!
@@ -81,10 +78,12 @@ public class Minesweeper extends Application{
             for(int k=-1; k<2;k++){
                 if(X_POS + i >= 0 && X_POS + i < gridArray.length && Y_POS + k >= 0 && Y_POS + k < gridArray.length){
                     if(gridArray[Y_POS + k][X_POS + i].beenSearched == true){
-                        return;
                     }else{
                         tile.beenSearched = true;
-                        Minesweeper.getAdjacentBombs(gridArray[Y_POS + k][X_POS + i]);
+                        int numBombs = Minesweeper.getAdjacentBombs(gridArray[Y_POS + k][X_POS + i]);
+                        if(numBombs == 0){
+                            Minesweeper.clearZeros(gridArray[Y_POS + k][X_POS + i]);
+                        }
                     }
                 }
             }
