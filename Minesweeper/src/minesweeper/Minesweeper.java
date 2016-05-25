@@ -36,7 +36,7 @@ public class Minesweeper extends Application{
        root.setVgap(10);
        root.setPadding(insets);
       
-        //add tiles to the gridpane
+       //add tiles to the gridpane
        for(int x = 0; x < 10; x++){
         for(int y = 0; y < 10; y++){   
            Tile newTile = new Tile(x, y, Math.random() <= 0.23);
@@ -59,14 +59,17 @@ public class Minesweeper extends Application{
     public static int getAdjacentBombs(Tile tile){ 
         int X_POS = tile.getX();
         int Y_POS = tile.getY();
+       
         int numBombs = 0;
         
         for(int i =-1; i<2; i++){
             for(int k=-1; k < 2; k++){
                 if(k != 0 && i != 0){
-                    if(gridArray[i][k].ifBomb()){
-                        numBombs = numBombs + 1;
-                    }
+                    if(X_POS + i>=0 && X_POS + i <= gridArray.length && Y_POS + i>=0 && Y_POS + i <= gridArray.length){
+                        if(gridArray[X_POS + i][Y_POS + k].ifBomb()){
+                            numBombs = numBombs + 1;
+                        }
+                    }    
                 }
             }
         }
@@ -82,16 +85,6 @@ public class Minesweeper extends Application{
         Scene scene = new Scene(createGameBoard());
         stage.setScene(scene);
         stage.show();
-        
-        /*    
-        for(int i = 0; i++; i < 10){
-            for(int k = 0; k++; k < 10){
-                gameBoard.add(new Button(), i, k);
-            }
-        }
-        */
-        
-        
     }
 
     /**
