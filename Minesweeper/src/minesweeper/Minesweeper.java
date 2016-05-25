@@ -56,7 +56,7 @@ public class Minesweeper extends Application{
         
         for(int i =-1; i<2; i++){
             for(int k=-1; k < 2; k++){
-                if(X_POS + i>=0 && X_POS + i < gridArray.length && Y_POS + i>=0 && Y_POS + i < gridArray.length){
+                if(X_POS + i >= 0 && X_POS + i < gridArray.length && Y_POS + k >= 0 && Y_POS + k < gridArray.length){
                     if(gridArray[Y_POS + k][X_POS + i].ifBomb()){
                         numBombs = numBombs + 1;
                     }
