@@ -40,7 +40,7 @@ public class Minesweeper extends Application{
        for(int x = 0; x < 10; x++){
         for(int y = 0; y < 10; y++){   
            Tile newTile = new Tile(x, y, Math.random() <= 0.2);
-           
+           newTile.beenSearched = false;
            newTile.setOnAction(newTile);
            gridArray[y][x] = newTile;
            root.add(newTile, x, y);
@@ -59,25 +59,42 @@ public class Minesweeper extends Application{
             for(int k=-1; k < 2; k++){
                 if(X_POS + i >= 0 && X_POS + i < gridArray.length && Y_POS + k >= 0 && Y_POS + k < gridArray.length){
                     if(gridArray[Y_POS + k][X_POS + i].ifBomb()){
-                        numBombs = numBombs + 1;
+                        numBombs++;
+                        gridArray[Y_POS + k][X_POS + i].beenSearched = true;
                     }
                 }   
             }
         }
+        if(numBombs == 0){
+            Minesweeper.clearZeros(tile);
+        }
+        return numBombs;
+    }    
         //FIX!
         //recursion: spreads out the 0 spaces 
-        if(numBombs == 0){
-            //start at the leftmost corner of the tile (w/ value 0) and check if it has adjacent bombs
-            for(int i =-1; i<2; i++){
-                for(int k=-1; k<2;k++){
-                    if(X_POS + i >= 0 && X_POS + i < gridArray.length && Y_POS + k >= 0 && Y_POS + k < gridArray.length){
+    public static void clearZeros(Tile tile){   
+        //start at the leftmost corner of the tile (w/ value 0) and check if it has adjacent bombs
+        //base case = if the tile when coming backward has been searched            
+        int X_POS = tile.getX();
+        int Y_POS = tile.getY();
+        for(int i =-1; i<2; i++){
+            for(int k=-1; k<2;k++){
+                if(X_POS + i >= 0 && X_POS + i < gridArray.length && Y_POS + k >= 0 && Y_POS + k < gridArray.length){
+                    if(gridArray[Y_POS + k][X_POS + i].beenSearched == true){
+                        return;
+                    }else{
+                        tile.beenSearched = true;
                         Minesweeper.getAdjacentBombs(gridArray[Y_POS + k][X_POS + i]);
                     }
                 }
             }
         }
-        return numBombs;
-    }    
+    }
+    
+        
+        //
+        
+     
     
     
     @Override

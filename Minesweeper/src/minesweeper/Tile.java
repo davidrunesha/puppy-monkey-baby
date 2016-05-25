@@ -23,6 +23,7 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
     private boolean hasBomb;
     private int adjacentBombs;
     private String text;
+    public boolean beenSearched = false;
     
     public Tile(int x, int y, boolean hasBomb){
         this.x = x;
