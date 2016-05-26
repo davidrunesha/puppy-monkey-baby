@@ -12,9 +12,9 @@ import javafx.scene.layout.GridPane;
  * @author Jacob Shkrob and David Runesha
  */
 public class Grid extends Parent {
-    
-   
     public Grid(){
         
     }
+    
+    
 }
