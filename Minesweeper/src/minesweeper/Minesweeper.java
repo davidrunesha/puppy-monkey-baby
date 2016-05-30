@@ -24,6 +24,7 @@ import javafx.stage.Stage;
  * @author dwheadon
  */
 public class Minesweeper extends Application{
+    /*
     GridPane gameBoard = new GridPane();
     public static Tile[][] gridArray = new Tile[10][10];
     
@@ -39,7 +40,7 @@ public class Minesweeper extends Application{
        //add tiles to the gridpane
        for(int x = 0; x < 10; x++){
         for(int y = 0; y < 10; y++){   
-           Tile newTile = new Tile(x, y, Math.random() <= 0.2);
+           Tile newTile = new Tile(x, y, Math.random() <= 0.15);
            newTile.beenSearched = false;
            newTile.setOnAction(newTile);
            gridArray[y][x] = newTile;
@@ -89,18 +90,13 @@ public class Minesweeper extends Application{
             }
         }
     }
-    
-        
-        //
-        
-     
-    
-    
+    */
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("GameView.fxml"));
-        
-        Scene scene = new Scene(createGameBoard());
+        //the minesweeper board uses the GameView.fxml as the root
+        Parent root = FXMLLoader.load(getClass().getResource("SettingsPanel.fxml"));
+        //Scene scene = new Scene(createGameBoard());
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }

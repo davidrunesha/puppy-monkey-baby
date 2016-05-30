@@ -29,6 +29,7 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
         this.x = x;
         this.y = y;
         this.hasBomb = hasBomb;
+        
     }
     
     @Override
@@ -39,12 +40,13 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
             //gameBoard.add(showInfo, this.getX(), this.getY())
             this.setText(text);
             System.out.println("YOU LOSE");
+            //System.exit(0);
         }else{
-            adjacentBombs = Minesweeper.getAdjacentBombs(this);
+            adjacentBombs = SettingsPanelController.getAdjacentBombs(this);
             text = "" + adjacentBombs;
             this.setText(text);
             if (adjacentBombs == 0) {
-                Minesweeper.clearZeros(this);
+                SettingsPanelController.clearZeros(this);
             }
         }
         //System.out.println("Hello world");
