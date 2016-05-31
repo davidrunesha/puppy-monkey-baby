@@ -24,6 +24,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -137,6 +138,7 @@ public class SettingsPanelController implements Initializable {
             }
         }
         tile.setText(numBombs+"");
+        //tile.setFont(Font.font(12));
         return numBombs;
     }    
         //FIX!
