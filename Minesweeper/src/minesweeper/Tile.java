@@ -49,9 +49,9 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
             //System.exit(0);
         }else{
             adjacentBombs = SettingsPanelController.getAdjacentBombs(this);
-            text = "" + adjacentBombs;
-            this.setText(text);
-            this.setFont(Font.font(12));
+            //text = "" + adjacentBombs;
+            //this.setText(text);
+            this.setFont(Font.font(14));
             if (adjacentBombs == 0) {
                 SettingsPanelController.clearZeros(this);
             }

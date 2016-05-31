@@ -137,8 +137,8 @@ public class SettingsPanelController implements Initializable {
                 }   
             }
         }
-        tile.setText(numBombs+"");
-        //tile.setFont(Font.font(12));
+        tile.setText("" + numBombs);
+        //tile.setFont(Font.font(14));
         return numBombs;
     }    
         //FIX!
