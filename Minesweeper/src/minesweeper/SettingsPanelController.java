@@ -8,6 +8,8 @@ package minesweeper;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,13 +29,35 @@ import javafx.stage.Stage;
  * @author mattatassi
  */
 public class SettingsPanelController implements Initializable {
+    @FXML
     private Button button;
-    private ChoiceBox choB;
+    @FXML
+    private ChoiceBox difficultyChoiceBox;
+    
+    ObservableList<String> difficultyChoiceList = FXCollections.observableArrayList("Easy", "Intermediate", "Hard");
     
     GridPane gameBoard = new GridPane();
-    public static Tile[][] gridArray = new Tile[10][10];
+    
+    //number of tiles in game
+    public static int numOfTiles = 10;
+    
+    
+    //2-d array of tiles w/ width and height = numOfTiles
+    public static Tile[][] gridArray = new Tile[0][0];
     
     private GridPane root;
+    public void findNumOfTiles(){
+        if(difficultyChoiceBox.getValue().equals("Easy")){
+            numOfTiles = 10;
+        }
+        if(difficultyChoiceBox.getValue().equals("Intermediate")){
+            numOfTiles = 15;
+        } 
+        if(difficultyChoiceBox.getValue().equals("Hard")){
+            numOfTiles = 20;
+        }
+    }
+    
     public Parent createGameBoard(){
        root = new GridPane();
        Insets insets = new Insets(0, 10, 0, 10);
@@ -41,10 +65,15 @@ public class SettingsPanelController implements Initializable {
        root.setHgap(10);
        root.setVgap(10);
        root.setPadding(insets);
-      
+       
+       this.findNumOfTiles();
+       
+       //changes the tile array size depending on the number of tiles
+       gridArray = new Tile[numOfTiles][numOfTiles];
+       
        //add tiles to the gridpane
-       for(int x = 0; x < 10; x++){
-        for(int y = 0; y < 10; y++){   
+       for(int x = 0; x < numOfTiles; x++){
+        for(int y = 0; y < numOfTiles; y++){   
            Tile newTile = new Tile(x, y, Math.random() <= 0.15);
            newTile.beenSearched = false;
            newTile.setOnAction(newTile);
@@ -95,7 +124,7 @@ public class SettingsPanelController implements Initializable {
             }
         }
     }
-    
+    //FOR SETTINGS 
     /**
      * Initializes the controller class.
      */
@@ -113,6 +142,8 @@ public class SettingsPanelController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        difficultyChoiceBox.setItems(difficultyChoiceList);
+        
     }    
     
 }
