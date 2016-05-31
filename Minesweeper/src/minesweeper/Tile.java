@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.layout.GridPane; 
+import javafx.scene.text.Font;
 import javax.swing.JButton;
 /**
  *
@@ -50,6 +51,7 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
             adjacentBombs = SettingsPanelController.getAdjacentBombs(this);
             text = "" + adjacentBombs;
             this.setText(text);
+            this.setFont(Font.font(12));
             if (adjacentBombs == 0) {
                 SettingsPanelController.clearZeros(this);
             }

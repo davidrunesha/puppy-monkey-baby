@@ -5,6 +5,7 @@
  */
 package minesweeper;
 
+import javafx.scene.layout.Region;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -85,12 +86,29 @@ public class SettingsPanelController implements Initializable {
        for(int x = 0; x < numOfTiles; x++){
         for(int y = 0; y < numOfTiles; y++){   
            Tile newTile = new Tile(x, y, Math.random() <= 0.15);
+           
+           //set button size 
+           newTile.setMinHeight(30.0);
+           newTile.setMinWidth(30.0);
+           newTile.setPrefHeight(30.0);
+           newTile.setPrefWidth(30.0);
+           newTile.setMaxHeight(30.0);
+           newTile.setMaxWidth(30.0);
+           
            newTile.beenSearched = false;
            newTile.setOnAction(newTile);
            gridArray[y][x] = newTile;
            root.add(newTile, x, y);
         }
        }
+       /*
+       for(int w = 0; w < numOfTiles; w++){
+           for(int z = 0; z < numOfTiles; z++){
+               gridArray[z][w].setHeight(15.0);
+               gridArray[z][w].setWidth(15.0);
+           }
+       }
+       */
        //count number of bombs in the game board
        for(int i = 0; i < numOfTiles; i++){
            for(int j = 0; j < numOfTiles; j++){
