@@ -34,6 +34,10 @@ public class SettingsPanelController implements Initializable {
     @FXML
     private ChoiceBox difficultyChoiceBox;
     
+    //RESTART BUTTON
+    Button restartButton = new Button();
+    
+    
     ObservableList<String> difficultyChoiceList = FXCollections.observableArrayList("Easy", "Intermediate", "Hard");
     
     GridPane gameBoard = new GridPane();
@@ -139,10 +143,11 @@ public class SettingsPanelController implements Initializable {
     }
     
     public static void revealAllBombs(int X_SKIP, int Y_SKIP){
-        for(int x = 0; x < gridArray.length; x++){
-            for(int y = 0; y < gridArray.length; y++){
+        for(int x = 0; x < numOfTiles; x++){
+            for(int y = 0; y < numOfTiles; y++){
                if(gridArray[y][x].ifBomb()){
-                   if (x != X_SKIP && y != Y_SKIP){
+                   if (x == X_SKIP && y == Y_SKIP){
+                   }else{
                        gridArray[y][x].setText("X");
                    }
                } 

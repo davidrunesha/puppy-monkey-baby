@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="1000.0" prefWidth="998.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="minesweeper.GameViewController">
+<AnchorPane id="AnchorPane" prefHeight="1000.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minesweeper.GameViewController">
     <children>
       <GridPane fx:id="gameBoard" gridLinesVisible="true" layoutX="100.0" layoutY="160.0" prefHeight="292.0" prefWidth="371.0">
         <columnConstraints>
@@ -18,5 +20,10 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="103.0" text="Restart">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

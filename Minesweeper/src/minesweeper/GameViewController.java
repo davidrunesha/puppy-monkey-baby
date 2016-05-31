@@ -22,10 +22,12 @@ public class GameViewController implements Initializable {
     @FXML
     GridPane gameBoard = new GridPane();
     
+    @FXML
+    Button restartButton = new Button();
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-       
+       //restart and make a new game
     }
     
     @Override
