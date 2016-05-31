@@ -20,6 +20,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -37,7 +39,6 @@ public class SettingsPanelController implements Initializable {
     //RESTART BUTTON
     Button restartButton = new Button();
     
-    
     ObservableList<String> difficultyChoiceList = FXCollections.observableArrayList("Easy", "Intermediate", "Hard");
     
     GridPane gameBoard = new GridPane();
@@ -51,6 +52,8 @@ public class SettingsPanelController implements Initializable {
         
     //2-d array of tiles w/ width and height = numOfTiles
     public static Tile[][] gridArray = new Tile[0][0];
+    
+    static Image repeatBombImage = new Image(SettingsPanelController.class.getResourceAsStream("bomb.png"));
         
     private GridPane root;
     public void findNumOfTiles(){
@@ -88,7 +91,6 @@ public class SettingsPanelController implements Initializable {
            root.add(newTile, x, y);
         }
        }
-       
        //count number of bombs in the game board
        for(int i = 0; i < numOfTiles; i++){
            for(int j = 0; j < numOfTiles; j++){
@@ -100,8 +102,8 @@ public class SettingsPanelController implements Initializable {
        }
        return root; 
     }
-    public static int getAdjacentBombs(Tile tile){ 
-        
+    
+    public static int getAdjacentBombs(Tile tile){     
         int X_POS = tile.getX();
         int Y_POS = tile.getY();
         System.out.println("The Tile Corr: (" + X_POS + "," + Y_POS + ")");
@@ -142,13 +144,15 @@ public class SettingsPanelController implements Initializable {
         }
     }
     
+    //reveals all bombs once they click a bomb
     public static void revealAllBombs(int X_SKIP, int Y_SKIP){
         for(int x = 0; x < numOfTiles; x++){
             for(int y = 0; y < numOfTiles; y++){
                if(gridArray[y][x].ifBomb()){
                    if (x == X_SKIP && y == Y_SKIP){
                    }else{
-                       gridArray[y][x].setText("X");
+                       //gridArray[y][x].setText("X");
+                       gridArray[y][x].setGraphic(new ImageView(repeatBombImage));
                    }
                } 
             }

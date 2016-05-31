@@ -27,7 +27,7 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
     private int adjacentBombs;
     private String text;
     public boolean beenSearched = false;
-    //Image bombImage = new Image(getClass().getResourceAsStream("bomb.png"));
+    Image bombImage = new Image(getClass().getResourceAsStream("bomb.png"));
     
     public Tile(int x, int y, boolean hasBomb){
         this.x = x;
@@ -38,9 +38,9 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent e){
         if(this.ifBomb()){
-            text = "X";
-            this.setText(text);
-            //this.setGraphic(new ImageView(bombImage));
+            //text = "X";
+            //this.setText(text);
+            this.setGraphic(new ImageView(bombImage));
             
             //reveal all the other bombs
             SettingsPanelController.revealAllBombs(this.getX(), this.getY());
