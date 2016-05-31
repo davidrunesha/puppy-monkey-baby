@@ -41,10 +41,13 @@ public class SettingsPanelController implements Initializable {
     //number of tiles in game
     public static int numOfTiles = 10;
     
+    public int NUM_BOMBS;
     
+    public int NUM_FLAGS;
+        
     //2-d array of tiles w/ width and height = numOfTiles
     public static Tile[][] gridArray = new Tile[0][0];
-    
+        
     private GridPane root;
     public void findNumOfTiles(){
         if(difficultyChoiceBox.getValue().equals("Easy")){
@@ -80,6 +83,16 @@ public class SettingsPanelController implements Initializable {
            gridArray[y][x] = newTile;
            root.add(newTile, x, y);
         }
+       }
+       
+       //count number of bombs in the game board
+       for(int i = 0; i < numOfTiles; i++){
+           for(int j = 0; j < numOfTiles; j++){
+               if(gridArray[j][i].ifBomb()){
+                   NUM_BOMBS++;
+                   NUM_FLAGS++;
+               }
+           }
        }
        return root; 
     }

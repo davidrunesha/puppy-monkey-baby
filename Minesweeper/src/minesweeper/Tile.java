@@ -5,12 +5,15 @@
  */
 package minesweeper;
 
+//import java.awt.Image;
+import javafx.scene.image.Image;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.layout.GridPane; 
 import javax.swing.JButton;
@@ -24,21 +27,21 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
     private int adjacentBombs;
     private String text;
     public boolean beenSearched = false;
+    //Image bombImage = new Image(getClass().getResourceAsStream("bomb.png"));
     
     public Tile(int x, int y, boolean hasBomb){
         this.x = x;
         this.y = y;
         this.hasBomb = hasBomb;
-        
     }
     
     @Override
     public void handle(ActionEvent e){
         if(this.ifBomb()){
             text = "X";
-            //Label showInfo = new Label(text);
-            //gameBoard.add(showInfo, this.getX(), this.getY())
             this.setText(text);
+            
+            //this.setGraphic(new ImageView(bombImage));
             System.out.println("YOU LOSE");
             //System.exit(0);
         }else{
