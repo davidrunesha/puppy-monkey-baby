@@ -40,8 +40,10 @@ public class Tile extends Button implements EventHandler<ActionEvent> {
         if(this.ifBomb()){
             text = "X";
             this.setText(text);
-            
             //this.setGraphic(new ImageView(bombImage));
+            
+            //reveal all the other bombs
+            SettingsPanelController.revealAllBombs(this.getX(), this.getY());
             System.out.println("YOU LOSE");
             //System.exit(0);
         }else{

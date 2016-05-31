@@ -137,6 +137,20 @@ public class SettingsPanelController implements Initializable {
             }
         }
     }
+    
+    public static void revealAllBombs(int X_SKIP, int Y_SKIP){
+        for(int x = 0; x < gridArray.length; x++){
+            for(int y = 0; y < gridArray.length; y++){
+               if(gridArray[y][x].ifBomb()){
+                   if (x != X_SKIP && y != Y_SKIP){
+                       gridArray[y][x].setText("X");
+                   }
+               } 
+            }
+        }
+    }
+    
+    
     //FOR SETTINGS 
     /**
      * Initializes the controller class.
