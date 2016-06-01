@@ -32,6 +32,7 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
     private int adjacentBombs;
     private String text;
     public boolean beenSearched = false;
+    public boolean hasFlag = false;
     Image bombImage = new Image(getClass().getResourceAsStream("bomb.png"));
     Image flagImage = new Image(getClass().getResourceAsStream("flag.png"));
     
@@ -62,11 +63,15 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
             }
         }    
         if(b == MouseButton.SECONDARY){
-            this.setGraphic(new ImageView(flagImage));
-            //this.setText("F");
-            //this.setFont(Font.font(14));
-            System.out.println("I right clicked");
-        }      
+            if(!this.hasFlag){
+                this.setGraphic(new ImageView(flagImage));
+                this.hasFlag = true;
+            }
+            if(this.hasFlag){
+                //this.setGraphic(new ImageView());
+                this.hasFlag = false;
+            }
+        }
     }
     //for a right click when flagging a tile
     

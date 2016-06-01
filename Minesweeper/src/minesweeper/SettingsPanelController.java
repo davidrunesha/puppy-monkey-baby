@@ -100,6 +100,7 @@ public class SettingsPanelController implements Initializable {
            newTile.setMaxWidth(40.0);
            
            newTile.beenSearched = false;
+           newTile.hasFlag = false;
            newTile.setOnMouseClicked(newTile);
            /*
            newTile.setOnMouseClicked(new EventHandler<MouseEvent>() {
