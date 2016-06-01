@@ -11,6 +11,8 @@ import javafx.scene.layout.Region;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -239,6 +241,25 @@ public class SettingsPanelController implements Initializable {
         // TODO
         difficultyChoiceBox.setItems(difficultyChoiceList);
         NUM_BOMBS_DOUBLE = numOfBombsSlider.getValue();
+        /*
+        restartButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event){
+                try {
+                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    Parent root = FXMLLoader.load(getClass().getResource("GameView.fxml"));
+                    Scene GAME_BOARD_SCENE = new Scene(createGameBoard());
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    
+                    stage.setScene(GAME_BOARD_SCENE);
+                    stage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(SettingsPanelController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+            }
+        });
+        */
     }    
     
 }
