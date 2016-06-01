@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -40,6 +41,8 @@ public class SettingsPanelController implements Initializable {
     private Button button;
     @FXML
     private ChoiceBox difficultyChoiceBox;
+    @FXML
+    private Slider numOfBombsSlider;
     
     //RESTART BUTTON
     Button restartButton = new Button();
@@ -51,7 +54,9 @@ public class SettingsPanelController implements Initializable {
     //number of tiles in game
     public static int numOfTiles = 10;
     
-    public int NUM_BOMBS;
+    public double NUM_BOMBS_DOUBLE;
+    public int NUM_BOMBS = (int) NUM_BOMBS_DOUBLE;
+    //lel im lazy
     
     public int NUM_FLAGS;
         
@@ -86,42 +91,62 @@ public class SettingsPanelController implements Initializable {
        //changes the tile array size depending on the number of tiles
        gridArray = new Tile[numOfTiles][numOfTiles];
        
+       int bombNumTrack = 0;
        //add tiles to the gridpane
        for(int x = 0; x < numOfTiles; x++){
         for(int y = 0; y < numOfTiles; y++){   
-           Tile newTile = new Tile(x, y, Math.random() <= 0.15);
+            Tile newTile = new Tile(x, y, Math.random() <= 0.15);
+            newTile.setMinHeight(40.0);
+            newTile.setMinWidth(40.0);
+            newTile.setPrefHeight(40.0);
+            newTile.setPrefWidth(40.0);
+            newTile.setMaxHeight(40.0);
+            newTile.setMaxWidth(40.0);
            
-           //set button size 
-           newTile.setMinHeight(40.0);
-           newTile.setMinWidth(40.0);
-           newTile.setPrefHeight(40.0);
-           newTile.setPrefWidth(40.0);
-           newTile.setMaxHeight(40.0);
-           newTile.setMaxWidth(40.0);
+            newTile.beenSearched = false;
+            newTile.hasFlag = false;
+            newTile.setOnMouseClicked(newTile);
+          
+            gridArray[y][x] = newTile;
+            root.add(newTile, x, y);
+            bombNumTrack++;  
+            /*
+            if(bombNumTrack <= NUM_BOMBS){
+                Tile newTile = new Tile(x, y, Math.random() <= 0.15);
+                newTile.setMinHeight(40.0);
+                newTile.setMinWidth(40.0);
+                newTile.setPrefHeight(40.0);
+                newTile.setPrefWidth(40.0);
+                newTile.setMaxHeight(40.0);
+                newTile.setMaxWidth(40.0);
            
-           newTile.beenSearched = false;
-           newTile.hasFlag = false;
-           newTile.setOnMouseClicked(newTile);
-           /*
-           newTile.setOnMouseClicked(new EventHandler<MouseEvent>() {
-               @Override
-               public void handle(MouseEvent event) {
-                   if()
-               }
-           });
-           */
-           gridArray[y][x] = newTile;
-           root.add(newTile, x, y);
-        }
-       }
-       /*
-       for(int w = 0; w < numOfTiles; w++){
-           for(int z = 0; z < numOfTiles; z++){
-               gridArray[z][w].setHeight(15.0);
-               gridArray[z][w].setWidth(15.0);
+                newTile.beenSearched = false;
+                newTile.hasFlag = false;
+                newTile.setOnMouseClicked(newTile);
+          
+                gridArray[y][x] = newTile;
+                root.add(newTile, x, y);
+                bombNumTrack++;
+           } else if(bombNumTrack > NUM_BOMBS){
+                Tile newTile = new Tile(x, y, false);
+                newTile.setMinHeight(40.0);
+                newTile.setMinWidth(40.0);
+                newTile.setPrefHeight(40.0);
+                newTile.setPrefWidth(40.0);
+                newTile.setMaxHeight(40.0);
+                newTile.setMaxWidth(40.0);
+           
+                newTile.beenSearched = false;
+                newTile.hasFlag = false;
+                newTile.setOnMouseClicked(newTile);
+          
+                gridArray[y][x] = newTile;
+                root.add(newTile, x, y);
+            */
            }
        }
-       */
+    
+        /*
        //count number of bombs in the game board
        for(int i = 0; i < numOfTiles; i++){
            for(int j = 0; j < numOfTiles; j++){
@@ -131,6 +156,7 @@ public class SettingsPanelController implements Initializable {
                }
            }
        }
+       */
        return root; 
     }
     
@@ -211,7 +237,7 @@ public class SettingsPanelController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         difficultyChoiceBox.setItems(difficultyChoiceList);
-        
+        NUM_BOMBS_DOUBLE = numOfBombsSlider.getValue();
     }    
     
 }
