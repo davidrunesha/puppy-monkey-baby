@@ -55,7 +55,8 @@ public class SettingsPanelController implements Initializable {
     public static int numOfTiles = 10;
     
     public double NUM_BOMBS_DOUBLE;
-    public int NUM_BOMBS = (int) NUM_BOMBS_DOUBLE;
+    
+   
     //lel im lazy
     
     public int NUM_FLAGS;
@@ -111,7 +112,7 @@ public class SettingsPanelController implements Initializable {
             root.add(newTile, x, y);
             bombNumTrack++;  
             /*
-            if(bombNumTrack <= NUM_BOMBS){
+            if(bombNumTrack <= (int) NUM_BOMBS_DOUBLE){
                 Tile newTile = new Tile(x, y, Math.random() <= 0.15);
                 newTile.setMinHeight(40.0);
                 newTile.setMinWidth(40.0);

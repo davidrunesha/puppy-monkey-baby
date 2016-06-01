@@ -67,9 +67,8 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
             if(!this.hasFlag){
                 this.setGraphic(new ImageView(flagImage));
                 this.hasFlag = true;
-            }
-            if(this.hasFlag){
-                //this.setGraphic(new ImageView());
+            }else if(this.hasFlag){
+                this.setGraphic(new ImageView((Image) null));
                 this.hasFlag = false;
             }
         }

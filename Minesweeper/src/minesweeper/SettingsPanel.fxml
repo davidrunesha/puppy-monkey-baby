@@ -31,5 +31,6 @@
             <Font name="Asimov" size="36.0" />
          </font>
       </Label>
+      <Label layoutX="358.0" layoutY="165.0" prefHeight="17.0" prefWidth="150.0" text="You didn't pick a difficulty!" textFill="#f60909" visible="false" />
    </children>
 </AnchorPane>
