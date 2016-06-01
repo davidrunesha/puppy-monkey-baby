@@ -7,116 +7,70 @@ package minesweeper;
 
 //import java.awt.Image;
 import javafx.scene.image.Image;
-import java.awt.event.MouseEvent;
+import javafx.scene.input.MouseEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent;
+
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.text.Text;
 import javafx.scene.layout.GridPane; 
 import javafx.scene.text.Font;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 /**
  *
  * @author Jacob Shkrob
  */
-public class Tile extends Button implements EventHandler<ActionEvent> {
+public class Tile extends Button implements EventHandler<MouseEvent>{
     private int x, y;
     private boolean hasBomb;
     private int adjacentBombs;
     private String text;
     public boolean beenSearched = false;
     Image bombImage = new Image(getClass().getResourceAsStream("bomb.png"));
+    Image flagImage = new Image(getClass().getResourceAsStream("flag.png"));
     
     public Tile(int x, int y, boolean hasBomb){
         this.x = x;
         this.y = y;
         this.hasBomb = hasBomb;
     }
-    
+    //for a left click when finding out tiles
     @Override
-    public void handle(ActionEvent e){
-        if(this.ifBomb()){
-            //text = "X";
-            //this.setText(text);
-            this.setGraphic(new ImageView(bombImage));
+    public void handle(MouseEvent e){
+        MouseButton b = e.getButton();
+        if(b == MouseButton.PRIMARY){
+            if(this.ifBomb()){
+                this.setGraphic(new ImageView(bombImage));
             
-            //reveal all the other bombs
-            SettingsPanelController.revealAllBombs(this.getX(), this.getY());
-            System.out.println("YOU LOSE");
-            //System.exit(0);
-        }else{
-            adjacentBombs = SettingsPanelController.getAdjacentBombs(this);
-            //text = "" + adjacentBombs;
-            //this.setText(text);
-            this.setFont(Font.font(14));
-            if (adjacentBombs == 0) {
-                SettingsPanelController.clearZeros(this);
+                //reveal all the other bombs
+                SettingsPanelController.revealAllBombs(this.getX(), this.getY());
+                System.out.println("YOU LOSE");
+                //System.exit(0);
+            }else{
+                adjacentBombs = SettingsPanelController.getAdjacentBombs(this);
+                this.setFont(Font.font(14));
+                if (adjacentBombs == 0) {
+                    SettingsPanelController.clearZeros(this);
+                }
+                //System.out.println("I left clicked");
             }
-        }
-        //System.out.println("Hello world");
+        }    
+        if(b == MouseButton.SECONDARY){
+            this.setGraphic(new ImageView(flagImage));
+            //this.setText("F");
+            //this.setFont(Font.font(14));
+            System.out.println("I right clicked");
+        }      
     }
-    /*
-    @Override
-    public void getOnMouseClicked(){
-        if(this.ifBomb()){
-            //display bomb
-            //end game
-        } else{
-            if(this.adjacentBombs() != 0){
-                //display number of adjacent bombs
-            }
-        }
-        //display nothing
-    }
-    */
+    //for a right click when flagging a tile
     
-   
-    //will do in later sprint isn't necessary
-    /*public int adjacentBombs(){
-        List<Tile> adjacentTiles = new ArrayList<Tile>();
-        int[] surroundingCoordX = new int[] {
-            -1, 
-            -1,
-            -1,
-             0, 
-             0,
-             0,
-             1, 
-             1, 
-             1
-        };
-        int[] surroundingCoordY = new int[] {
-            -1,
-            -1,
-            -1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1
-        };
-        int surroundingTimes = surroundingCoordX.length; 
-            //o o o
-            //o X o
-            //o o o
-        for(int i=0; i<surroundingTimes; i++){
-            int tempX = surroundingCoordX[i];
-            int tempY = surroundingCoordY[i];
-            //put it into representation
-            int actualX = this.getX() + tempX;
-            int actualY = this.getY() + tempY;
-            
-            //make sure that the size doesn't go past the gridspace
-            if(actualX >= 0 && actualX <= gridArray.size())
-        }
-        
-        return adjacentBombs;
-    }
-    */
+    
     public int getX(){
         return x;
     }

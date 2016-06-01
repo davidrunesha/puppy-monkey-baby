@@ -5,6 +5,8 @@
  */
 package minesweeper;
 
+
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import java.io.IOException;
 import java.net.URL;
@@ -12,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -97,7 +100,15 @@ public class SettingsPanelController implements Initializable {
            newTile.setMaxWidth(40.0);
            
            newTile.beenSearched = false;
-           newTile.setOnAction(newTile);
+           newTile.setOnMouseClicked(newTile);
+           /*
+           newTile.setOnMouseClicked(new EventHandler<MouseEvent>() {
+               @Override
+               public void handle(MouseEvent event) {
+                   if()
+               }
+           });
+           */
            gridArray[y][x] = newTile;
            root.add(newTile, x, y);
         }
