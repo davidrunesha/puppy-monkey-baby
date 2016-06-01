@@ -45,7 +45,8 @@ public class SettingsPanelController implements Initializable {
     private Slider numOfBombsSlider;
     
     //RESTART BUTTON
-    Button restartButton = new Button();
+    @FXML
+    private Button restartButton;
     
     ObservableList<String> difficultyChoiceList = FXCollections.observableArrayList("Easy", "Intermediate", "Hard");
     

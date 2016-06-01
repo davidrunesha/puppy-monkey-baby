@@ -98,16 +98,13 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
 
 
 /*things to work on:
-1. For flags:
-    a. when you right click again, the flag should remove itself
-    b. limit to the # of flags you can put down
 2. Restart button
     a. Should be located either on the gameboard or on a different scene
     b. basically just restart the game 
 3. You Loose/ You Win messages
 4. Bomb number adjuster
     a. specifies the number of bombs someone wants in the game
-
+5. Flag # show-er
 ALSO
 
 we should lock the size of each board so that it doesn't adjust
