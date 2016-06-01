@@ -89,12 +89,12 @@ public class SettingsPanelController implements Initializable {
            Tile newTile = new Tile(x, y, Math.random() <= 0.15);
            
            //set button size 
-           newTile.setMinHeight(30.0);
-           newTile.setMinWidth(30.0);
-           newTile.setPrefHeight(30.0);
-           newTile.setPrefWidth(30.0);
-           newTile.setMaxHeight(30.0);
-           newTile.setMaxWidth(30.0);
+           newTile.setMinHeight(40.0);
+           newTile.setMinWidth(40.0);
+           newTile.setPrefHeight(40.0);
+           newTile.setPrefWidth(40.0);
+           newTile.setMaxHeight(40.0);
+           newTile.setMaxWidth(40.0);
            
            newTile.beenSearched = false;
            newTile.setOnAction(newTile);
@@ -138,7 +138,7 @@ public class SettingsPanelController implements Initializable {
             }
         }
         tile.setText("" + numBombs);
-        //tile.setFont(Font.font(14));
+        tile.setFont(Font.font(14));
         return numBombs;
     }    
         //FIX!
