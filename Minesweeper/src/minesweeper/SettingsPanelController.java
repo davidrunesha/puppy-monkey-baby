@@ -59,7 +59,7 @@ public class SettingsPanelController implements Initializable {
    
     //lel im lazy
     
-    public int NUM_FLAGS;
+    public static int NUM_FLAGS;
         
     //2-d array of tiles w/ width and height = numOfTiles
     public static Tile[][] gridArray = new Tile[0][0];
@@ -147,17 +147,16 @@ public class SettingsPanelController implements Initializable {
            }
        }
     
-        /*
+        
        //count number of bombs in the game board
        for(int i = 0; i < numOfTiles; i++){
            for(int j = 0; j < numOfTiles; j++){
                if(gridArray[j][i].ifBomb()){
-                   NUM_BOMBS++;
                    NUM_FLAGS++;
                }
            }
        }
-       */
+       
        return root; 
     }
     

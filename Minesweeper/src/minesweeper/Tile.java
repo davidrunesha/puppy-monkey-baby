@@ -64,15 +64,19 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
         }    
         //for right clicking
         if(b == MouseButton.SECONDARY){
-            if(!this.hasFlag){
-                this.setGraphic(new ImageView(flagImage));
-                this.hasFlag = true;
-            }else if(this.hasFlag){
-                this.setGraphic(new ImageView((Image) null));
-                this.hasFlag = false;
-            }
+                if(!this.hasFlag){
+                    if(SettingsPanelController.NUM_FLAGS > 0){
+                        this.setGraphic(new ImageView(flagImage));
+                        this.hasFlag = true;
+                        SettingsPanelController.NUM_FLAGS--;
+                    }
+                }else if(this.hasFlag){
+                    this.setGraphic(new ImageView((Image) null));
+                    this.hasFlag = false;
+                    SettingsPanelController.NUM_FLAGS++;
+                }
         }
-    }
+    }     
     public int getX(){
         return x;
     }
