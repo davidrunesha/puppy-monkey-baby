@@ -47,19 +47,24 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
         MouseButton b = e.getButton();
         if(b == MouseButton.PRIMARY){
             if(this.ifBomb()){
-                this.setGraphic(new ImageView(bombImage));
-            
-                //reveal all the other bombs
-                SettingsPanelController.revealAllBombs(this.getX(), this.getY());
-                System.out.println("YOU LOSE");
-                //System.exit(0);
+                if(this.hasFlag == false){
+                    this.setGraphic(new ImageView(bombImage));
+                
+                    //reveal all the other bombs
+                    SettingsPanelController.revealAllBombs(this.getX(), this.getY());
+                    System.out.println("YOU LOSE");
+                
+                    //System.exit(0);
+                }
             }else{
-                adjacentBombs = SettingsPanelController.getAdjacentBombs(this);
-                this.setFont(Font.font(14));
-                if (adjacentBombs == 0) {
+                if(this.hasFlag == false){
+                    adjacentBombs = SettingsPanelController.getAdjacentBombs(this);
+                    this.setFont(Font.font(14));
+                    if (adjacentBombs == 0) {
                     SettingsPanelController.clearZeros(this);
                 }
                 //System.out.println("I left clicked");
+            }
             }
         }    
         //for right clicking
