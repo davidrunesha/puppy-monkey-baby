@@ -255,14 +255,12 @@ public class SettingsPanelController implements Initializable {
         stage.setScene(GAME_BOARD_SCENE);
         stage.show();
         
-        restartButton.setOnAction(new EventHandler<ActionEvent>() {
+        restartButton1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event){
-                    stage.close();
-                    Stage refreshStage = new Stage();
+            public void handle(ActionEvent event){ 
                     Scene RESTARTED_GAME_BOARD_SCENE = new Scene(createGameBoard());
-                    refreshStage.setScene(RESTARTED_GAME_BOARD_SCENE);
-                    refreshStage.show();
+                    stage.setScene(RESTARTED_GAME_BOARD_SCENE);
+                    stage.show();
                     /*
                     Stage refreshStage = new Stage();
                     refreshStage.setScene(stage.getScene());
