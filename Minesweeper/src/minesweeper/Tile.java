@@ -49,7 +49,7 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
             if(this.ifBomb()){
                 if(this.hasFlag == false){
                     this.setGraphic(new ImageView(bombImage));
-                
+                    
                     //reveal all the other bombs
                     SettingsPanelController.revealAllBombs(this.getX(), this.getY());
                     System.out.println("YOU LOSE");
@@ -61,7 +61,7 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
                     adjacentBombs = SettingsPanelController.getAdjacentBombs(this);
                     this.setFont(Font.font(14));
                     if (adjacentBombs == 0) {
-                    SettingsPanelController.clearZeros(this);
+                        SettingsPanelController.clearZeros(this);
                 }
                 //System.out.println("I left clicked");
             }
@@ -70,18 +70,24 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
         //for right clicking
         if(b == MouseButton.SECONDARY){
                 if(!this.hasFlag){
-                    if(SettingsPanelController.NUM_FLAGS > 0){
-                        this.setGraphic(new ImageView(flagImage));
-                        this.hasFlag = true;
-                        SettingsPanelController.NUM_FLAGS--;
-                    }
+                    if(!this.beenSearched){ 
+                        if(SettingsPanelController.NUM_FLAGS > 0){
+                            this.setGraphic(new ImageView(flagImage));
+                            this.hasFlag = true;
+                            SettingsPanelController.NUM_FLAGS--;
+                        }
+                    } 
                 }else if(this.hasFlag){
-                    this.setGraphic(new ImageView((Image) null));
-                    this.hasFlag = false;
-                    SettingsPanelController.NUM_FLAGS++;
+                    if(!this.beenSearched){
+                        this.setGraphic(new ImageView((Image) null));
+                        this.hasFlag = false;
+                        SettingsPanelController.NUM_FLAGS++;
+                    }
+        
                 }
-        }
-    }     
+    
+        }     
+    }
     public int getX(){
         return x;
     }

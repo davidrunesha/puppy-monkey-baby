@@ -50,6 +50,8 @@ public class SettingsPanelController implements Initializable {
     @FXML
     private Button restartButton;
     
+    Button restartButton1 = new Button();
+    
     ObservableList<String> difficultyChoiceList = FXCollections.observableArrayList("Easy", "Intermediate", "Hard");
     
     GridPane gameBoard = new GridPane();
@@ -67,6 +69,7 @@ public class SettingsPanelController implements Initializable {
     //2-d array of tiles w/ width and height = numOfTiles
     public static Tile[][] gridArray = new Tile[0][0];
     
+    Image smileImage = new Image(getClass().getResourceAsStream("smiley.png"));
     static Image repeatBombImage = new Image(SettingsPanelController.class.getResourceAsStream("bomb.png"));
         
     private GridPane root;
@@ -84,7 +87,7 @@ public class SettingsPanelController implements Initializable {
     
     public Parent createGameBoard(){
        root = new GridPane();
-       Insets insets = new Insets(0, 10, 0, 10);
+       Insets insets = new Insets(60, 10, 0, 10);
         
        root.setHgap(10);
        root.setVgap(10);
@@ -149,7 +152,25 @@ public class SettingsPanelController implements Initializable {
             */
            }
        }
-    
+       /*
+       restartButton1.setLayoutX(numOfTiles + 3);
+       restartButton1.setLayoutY(numOfTiles + 3);
+       */
+       restartButton1.setText("Restart");
+       restartButton1.setFont(Font.font(14.0));
+       restartButton1.setMinHeight(40.0);
+       restartButton1.setMinWidth(40.0);
+       restartButton1.setPrefHeight(40.0);
+       restartButton1.setPrefWidth(40.0);
+       restartButton1.setMaxHeight(40.0);
+       restartButton1.setMaxWidth(40.0);
+       
+       restartButton1.setGraphic(new ImageView(smileImage));
+       
+       root.add(restartButton1, numOfTiles/2, numOfTiles); 
+       //root.getChildren().add(restartButton1);
+       
+       
         
        //count number of bombs in the game board
        for(int i = 0; i < numOfTiles; i++){
@@ -227,13 +248,36 @@ public class SettingsPanelController implements Initializable {
      */
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("GameView.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("GameView.fxml"));
         Scene GAME_BOARD_SCENE = new Scene(createGameBoard());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         
         stage.setScene(GAME_BOARD_SCENE);
         stage.show();
         
+        restartButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event){
+                    stage.close();
+                    Stage refreshStage = new Stage();
+                    Scene RESTARTED_GAME_BOARD_SCENE = new Scene(createGameBoard());
+                    refreshStage.setScene(RESTARTED_GAME_BOARD_SCENE);
+                    refreshStage.show();
+                    /*
+                    Stage refreshStage = new Stage();
+                    refreshStage.setScene(stage.getScene());
+                    refreshStage.show();
+                    stage.close();
+                    /*
+                    Parent root = FXMLLoader.load(getClass().getResource("GameView.fxml"));
+                    Scene RESTARTED_GAME_BOARD_SCENE = new Scene(createGameBoard());
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    
+                    stage.setScene(RESTARTED_GAME_BOARD_SCENE);
+                    stage.show()
+                    */
+            }        
+        });
     }
     
     @Override
@@ -241,25 +285,9 @@ public class SettingsPanelController implements Initializable {
         // TODO
         difficultyChoiceBox.setItems(difficultyChoiceList);
         NUM_BOMBS_DOUBLE = numOfBombsSlider.getValue();
-        /*
-        restartButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event){
-                try {
-                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    Parent root = FXMLLoader.load(getClass().getResource("GameView.fxml"));
-                    Scene GAME_BOARD_SCENE = new Scene(createGameBoard());
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    
-                    stage.setScene(GAME_BOARD_SCENE);
-                    stage.show();
-                } catch (IOException ex) {
-                    Logger.getLogger(SettingsPanelController.class.getName()).log(Level.SEVERE, null, ex);
-                }
         
-            }
-        });
-        */
+       
+        
     }    
     
 }
