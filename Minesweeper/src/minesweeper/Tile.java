@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.scene.layout.GridPane; 
 import javafx.scene.text.Font;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 /**
  *
@@ -52,9 +53,10 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
                     
                     //reveal all the other bombs
                     SettingsPanelController.revealAllBombs(this.getX(), this.getY());
-                    System.out.println("YOU LOSE");
+                    //System.out.println("YOU LOSE");
+                    JOptionPane.showMessageDialog(null, "You Lose");
                 
-                    //System.exit(0);
+                    
                 }
             }else{
                 if(this.hasFlag == false){

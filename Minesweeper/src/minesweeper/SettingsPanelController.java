@@ -87,7 +87,7 @@ public class SettingsPanelController implements Initializable {
     
     public Parent createGameBoard(){
        root = new GridPane();
-       Insets insets = new Insets(60, 10, 0, 10);
+       Insets insets = new Insets(0, 10, 0, 10);
         
        root.setHgap(10);
        root.setVgap(10);
@@ -261,19 +261,6 @@ public class SettingsPanelController implements Initializable {
                     Scene RESTARTED_GAME_BOARD_SCENE = new Scene(createGameBoard());
                     stage.setScene(RESTARTED_GAME_BOARD_SCENE);
                     stage.show();
-                    /*
-                    Stage refreshStage = new Stage();
-                    refreshStage.setScene(stage.getScene());
-                    refreshStage.show();
-                    stage.close();
-                    /*
-                    Parent root = FXMLLoader.load(getClass().getResource("GameView.fxml"));
-                    Scene RESTARTED_GAME_BOARD_SCENE = new Scene(createGameBoard());
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    
-                    stage.setScene(RESTARTED_GAME_BOARD_SCENE);
-                    stage.show()
-                    */
             }        
         });
     }
