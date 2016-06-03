@@ -29,7 +29,7 @@ import javax.swing.SwingUtilities;
  */
 public class Tile extends Button implements EventHandler<MouseEvent>{
     private int x, y;
-    private boolean hasBomb;
+    public boolean hasBomb;
     private int adjacentBombs;
     private String text;
     public boolean beenSearched = false;

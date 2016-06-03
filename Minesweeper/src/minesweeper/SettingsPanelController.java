@@ -59,7 +59,9 @@ public class SettingsPanelController implements Initializable {
     //number of tiles in game
     public static int numOfTiles = 10;
     
-    public double NUM_BOMBS_DOUBLE;
+    public double NUM_BOMBS;
+    
+    public int CHECKED_NUM_BOMBS;
     
    
     //lel im lazy
@@ -81,7 +83,7 @@ public class SettingsPanelController implements Initializable {
             numOfTiles = 15;
         } 
         if(difficultyChoiceBox.getValue().equals("Hard")){
-            numOfTiles = 20;
+            numOfTiles = 18;
         }
     }
     
@@ -98,43 +100,9 @@ public class SettingsPanelController implements Initializable {
        //changes the tile array size depending on the number of tiles
        gridArray = new Tile[numOfTiles][numOfTiles];
        
-       int bombNumTrack = 0;
        //add tiles to the gridpane
-       for(int x = 0; x < numOfTiles; x++){
-        for(int y = 0; y < numOfTiles; y++){   
-            Tile newTile = new Tile(x, y, Math.random() <= 0.15);
-            newTile.setMinHeight(40.0);
-            newTile.setMinWidth(40.0);
-            newTile.setPrefHeight(40.0);
-            newTile.setPrefWidth(40.0);
-            newTile.setMaxHeight(40.0);
-            newTile.setMaxWidth(40.0);
-           
-            newTile.beenSearched = false;
-            newTile.hasFlag = false;
-            newTile.setOnMouseClicked(newTile);
-          
-            gridArray[y][x] = newTile;
-            root.add(newTile, x, y);
-            bombNumTrack++;  
-            /*
-            if(bombNumTrack <= (int) NUM_BOMBS_DOUBLE){
-                Tile newTile = new Tile(x, y, Math.random() <= 0.15);
-                newTile.setMinHeight(40.0);
-                newTile.setMinWidth(40.0);
-                newTile.setPrefHeight(40.0);
-                newTile.setPrefWidth(40.0);
-                newTile.setMaxHeight(40.0);
-                newTile.setMaxWidth(40.0);
-           
-                newTile.beenSearched = false;
-                newTile.hasFlag = false;
-                newTile.setOnMouseClicked(newTile);
-          
-                gridArray[y][x] = newTile;
-                root.add(newTile, x, y);
-                bombNumTrack++;
-           } else if(bombNumTrack > NUM_BOMBS){
+        for(int x = 0; x < numOfTiles; x++){
+            for(int y = 0; y < numOfTiles; y++){              
                 Tile newTile = new Tile(x, y, false);
                 newTile.setMinHeight(40.0);
                 newTile.setMinWidth(40.0);
@@ -148,40 +116,62 @@ public class SettingsPanelController implements Initializable {
                 newTile.setOnMouseClicked(newTile);
           
                 gridArray[y][x] = newTile;
-                root.add(newTile, x, y);
-            */
-           }
-       }
-       /*
-       restartButton1.setLayoutX(numOfTiles + 3);
-       restartButton1.setLayoutY(numOfTiles + 3);
-       */
-       restartButton1.setText("Restart");
-       restartButton1.setFont(Font.font(14.0));
-       restartButton1.setMinHeight(40.0);
-       restartButton1.setMinWidth(40.0);
-       restartButton1.setPrefHeight(40.0);
-       restartButton1.setPrefWidth(40.0);
-       restartButton1.setMaxHeight(40.0);
-       restartButton1.setMaxWidth(40.0);
+                root.add(newTile, x, y);   
+            }
+        }       
+        for(int i =1; i <=(int) NUM_BOMBS; i++){
+           int randomCorrY = (int) (Math.random() * numOfTiles);
+           int randomCorrX = (int) (Math.random() * numOfTiles);
+           
+           root.getChildren().remove(gridArray[randomCorrY][randomCorrX]);
+           Tile bombTile =  gridArray[randomCorrY][randomCorrX];
+           bombTile.hasBomb = true;
+           root.add(bombTile, bombTile.getX(), bombTile.getY());
+        }
        
-       restartButton1.setGraphic(new ImageView(smileImage));
+        restartButton1.setText("Restart");
+        restartButton1.setFont(Font.font(14.0));
+        restartButton1.setMinHeight(40.0);
+        restartButton1.setMinWidth(40.0);
+        restartButton1.setPrefHeight(40.0);
+        restartButton1.setPrefWidth(40.0);
+        restartButton1.setMaxHeight(40.0);
+        restartButton1.setMaxWidth(40.0);
        
-       root.add(restartButton1, numOfTiles/2, numOfTiles); 
-       //root.getChildren().add(restartButton1);
+        restartButton1.setGraphic(new ImageView(smileImage));
        
-       
-        
-       //count number of bombs in the game board
-       for(int i = 0; i < numOfTiles; i++){
-           for(int j = 0; j < numOfTiles; j++){
-               if(gridArray[j][i].ifBomb()){
+        root.add(restartButton1, numOfTiles/2, numOfTiles); 
+        //count number of bombs in the game board
+        for(int i = 0; i < numOfTiles; i++){
+             for(int j = 0; j < numOfTiles; j++){
+                if(gridArray[j][i].ifBomb()){
                    NUM_FLAGS++;
+                   
+                }
+            }
+        }
+       
+        return root;
+       
+    }
+    
+    public void keepFillingBombs(){
+        for(int i = 0; i < numOfTiles; i++){
+           for(int j = 0; j < numOfTiles; j++){
+               if(CHECKED_NUM_BOMBS != (int) NUM_BOMBS){
+                   gridArray[j][i].hasBomb = (Math.random()<= 0.15);
+                   if(gridArray[j][i].ifBomb()){
+                       CHECKED_NUM_BOMBS++;
+                   }
+               }
+               if(CHECKED_NUM_BOMBS == NUM_BOMBS){
+                   return;
                }
            }
        }
-       
-       return root; 
+       if(CHECKED_NUM_BOMBS != (int) NUM_BOMBS){
+           //this.keepFillingBombs();
+       }
     }
     
     public static int getAdjacentBombs(Tile tile){     
@@ -269,10 +259,13 @@ public class SettingsPanelController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         difficultyChoiceBox.setItems(difficultyChoiceList);
-        NUM_BOMBS_DOUBLE = numOfBombsSlider.getValue();
-        
-       
-        
+        numOfBombsSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                NUM_BOMBS = numOfBombsSlider.getValue();
+            }
+        });
+            
     }    
     
 }
