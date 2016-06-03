@@ -62,10 +62,7 @@ public class SettingsPanelController implements Initializable {
     public double NUM_BOMBS;
     
     public int CHECKED_NUM_BOMBS;
-    
    
-    //lel im lazy
-    
     public static int NUM_FLAGS;
         
     //2-d array of tiles w/ width and height = numOfTiles
@@ -141,39 +138,17 @@ public class SettingsPanelController implements Initializable {
         restartButton1.setGraphic(new ImageView(smileImage));
        
         root.add(restartButton1, numOfTiles/2, numOfTiles); 
-        //count number of bombs in the game board
+        
         for(int i = 0; i < numOfTiles; i++){
              for(int j = 0; j < numOfTiles; j++){
                 if(gridArray[j][i].ifBomb()){
                    NUM_FLAGS++;
-                   
                 }
             }
         }
-       
         return root;
-       
     }
-    
-    public void keepFillingBombs(){
-        for(int i = 0; i < numOfTiles; i++){
-           for(int j = 0; j < numOfTiles; j++){
-               if(CHECKED_NUM_BOMBS != (int) NUM_BOMBS){
-                   gridArray[j][i].hasBomb = (Math.random()<= 0.15);
-                   if(gridArray[j][i].ifBomb()){
-                       CHECKED_NUM_BOMBS++;
-                   }
-               }
-               if(CHECKED_NUM_BOMBS == NUM_BOMBS){
-                   return;
-               }
-           }
-       }
-       if(CHECKED_NUM_BOMBS != (int) NUM_BOMBS){
-           //this.keepFillingBombs();
-       }
-    }
-    
+
     public static int getAdjacentBombs(Tile tile){     
         int X_POS = tile.getX();
         int Y_POS = tile.getY();
@@ -193,8 +168,6 @@ public class SettingsPanelController implements Initializable {
         tile.setFont(Font.font(14));
         return numBombs;
     }    
-        //FIX!
-        //recursion: spreads out the 0 spaces 
     public static void clearZeros(Tile tile){   
         //start at the leftmost corner of the tile (w/ value 0) and check if it has adjacent bombs
         //base case = if the tile when coming backward has been searched            
@@ -230,9 +203,6 @@ public class SettingsPanelController implements Initializable {
             }
         }
     }
-    
-    
-    //FOR SETTINGS 
     /**
      * Initializes the controller class.
      */
