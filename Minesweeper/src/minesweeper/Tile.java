@@ -71,10 +71,11 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
                 //System.out.println("I left clicked");
                 }
             }
+            
         }    
         //for right clicking
         if(b == MouseButton.SECONDARY){
-                if(!this.hasFlag){
+                if(this.hasFlag == false){
                     if(!this.beenSearched){ 
                         if(SettingsPanelController.NUM_FLAGS > 0){
                             this.setGraphic(new ImageView(flagImage));

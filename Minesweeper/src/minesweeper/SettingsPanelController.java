@@ -174,6 +174,7 @@ public class SettingsPanelController implements Initializable {
                 }   
             }
         }
+        tile.beenSearched = true;
         tile.setText("" + numBombs);
         tile.setFont(Font.font(14));
         tile.coloredNum();
