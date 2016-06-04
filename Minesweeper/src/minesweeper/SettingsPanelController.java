@@ -60,8 +60,6 @@ public class SettingsPanelController implements Initializable {
     public static int numOfTiles = 10;
     
     public double NUM_BOMBS;
-    
-    public int CHECKED_NUM_BOMBS;
    
     public static int NUM_FLAGS;
         
@@ -70,6 +68,8 @@ public class SettingsPanelController implements Initializable {
     
     Image smileImage = new Image(getClass().getResourceAsStream("smiley.png"));
     static Image repeatBombImage = new Image(SettingsPanelController.class.getResourceAsStream("bomb.png"));
+    
+    public static int numNotBombTiles = 0;
         
     private GridPane root;
     public void findNumOfTiles(){
@@ -94,6 +94,7 @@ public class SettingsPanelController implements Initializable {
        
        this.findNumOfTiles();
        
+       numNotBombTiles = numOfTiles - (int) NUM_BOMBS;
        //changes the tile array size depending on the number of tiles
        gridArray = new Tile[numOfTiles][numOfTiles];
        
@@ -107,7 +108,7 @@ public class SettingsPanelController implements Initializable {
                 newTile.setPrefWidth(40.0);
                 newTile.setMaxHeight(40.0);
                 newTile.setMaxWidth(40.0);
-           
+                
                 newTile.beenSearched = false;
                 newTile.hasFlag = false;
                 newTile.setOnMouseClicked(newTile);
@@ -116,15 +117,21 @@ public class SettingsPanelController implements Initializable {
                 root.add(newTile, x, y);   
             }
         }       
+        //random placement of bombs
+        
         for(int i =1; i <=(int) NUM_BOMBS; i++){
            int randomCorrY = (int) (Math.random() * numOfTiles);
            int randomCorrX = (int) (Math.random() * numOfTiles);
-           
+           while(gridArray[randomCorrY][randomCorrX].ifBomb()){
+               randomCorrY = (int) (Math.random() * numOfTiles);
+               randomCorrX = (int) (Math.random() * numOfTiles);
+           }
            root.getChildren().remove(gridArray[randomCorrY][randomCorrX]);
            Tile bombTile =  gridArray[randomCorrY][randomCorrX];
            bombTile.hasBomb = true;
            root.add(bombTile, bombTile.getX(), bombTile.getY());
         }
+        
        
         restartButton1.setText("Restart");
         restartButton1.setFont(Font.font(14.0));
@@ -161,6 +168,11 @@ public class SettingsPanelController implements Initializable {
                     if(gridArray[Y_POS + k][X_POS + i].ifBomb()){
                         numBombs++;
                     }
+                    /*if(!gridArray[Y_POS + k][X_POS + i].ifBomb()){
+                        gridArray[Y_POS + k][X_POS + i].setStyle("-fx-font: 14 arial; -fx-base: #c0c3bd;");
+                    }
+                    */
+                    numNotBombTiles--;
                 }   
             }
         }
@@ -179,6 +191,7 @@ public class SettingsPanelController implements Initializable {
                     if(gridArray[Y_POS + k][X_POS + i].beenSearched == true){
                     }else{
                         tile.beenSearched = true;
+                        gridArray[Y_POS + k][X_POS + i].setStyle("-fx-font: 14 arial; -fx-base: #d8d8d8;");
                         int numBombs = SettingsPanelController.getAdjacentBombs(gridArray[Y_POS + k][X_POS + i]);
                         if(numBombs == 0){
                             SettingsPanelController.clearZeros(gridArray[Y_POS + k][X_POS + i]);
@@ -218,9 +231,9 @@ public class SettingsPanelController implements Initializable {
         restartButton1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){ 
-                    Scene RESTARTED_GAME_BOARD_SCENE = new Scene(createGameBoard());
-                    stage.setScene(RESTARTED_GAME_BOARD_SCENE);
-                    stage.show();
+                Scene RESTARTED_GAME_BOARD_SCENE = new Scene(createGameBoard());
+                stage.setScene(RESTARTED_GAME_BOARD_SCENE);
+                stage.show();
             }        
         });
     }
@@ -234,8 +247,6 @@ public class SettingsPanelController implements Initializable {
             public void handle(MouseEvent event) {
                 NUM_BOMBS = numOfBombsSlider.getValue();
             }
-        });
-            
+        });     
     }    
-    
 }

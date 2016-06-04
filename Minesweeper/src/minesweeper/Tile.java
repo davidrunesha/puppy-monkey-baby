@@ -61,13 +61,18 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
             }else{
                 if(this.hasFlag == false){
                     adjacentBombs = SettingsPanelController.getAdjacentBombs(this);
-                    this.setFont(Font.font(14));
+                    //this.setFont(Font.font(14));
+                    this.setStyle("-fx-font: 14 arial; -fx-base: #d8d8d8;");
                     if (adjacentBombs == 0) {
                         SettingsPanelController.clearZeros(this);
-                }
+                    }
                 //System.out.println("I left clicked");
+                }
             }
+            if(SettingsPanelController.numNotBombTiles == 0){
+                JOptionPane.showMessageDialog(null, "You Win!");
             }
+            
         }    
         //for right clicking
         if(b == MouseButton.SECONDARY){
