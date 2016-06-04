@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.text.Text;
 import javafx.scene.layout.GridPane; 
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -45,6 +46,7 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
     //for a left click when finding out tiles
     @Override
     public void handle(MouseEvent e){
+      if(SettingsPanelController.isGameOver == false){  
         MouseButton b = e.getButton();
         if(b == MouseButton.PRIMARY){
             if(this.ifBomb()){
@@ -55,7 +57,7 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
                     SettingsPanelController.revealAllBombs(this.getX(), this.getY());
                     //System.out.println("YOU LOSE");
                     JOptionPane.showMessageDialog(null, "You Lose");
-                
+                    SettingsPanelController.isGameOver = true;
                     
                 }
             }else{
@@ -69,10 +71,6 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
                 //System.out.println("I left clicked");
                 }
             }
-            if(SettingsPanelController.numNotBombTiles == 0){
-                JOptionPane.showMessageDialog(null, "You Win!");
-            }
-            
         }    
         //for right clicking
         if(b == MouseButton.SECONDARY){
@@ -94,6 +92,7 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
                 }
     
         }     
+      }
     }
     public int getX(){
         return x;
@@ -106,19 +105,34 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
     public boolean ifBomb(){
         return hasBomb;
     }
+
+    public void coloredNum() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.getText().equals("1")){
+            this.setTextFill(Color.web("#ff3300"));
+        }
+        if(this.getText().equals("2")){
+            this.setTextFill(Color.web("#0000ff"));
+        }
+        if(this.getText().equals("3")){
+            this.setTextFill(Color.web("#00cc00"));
+        }
+        if(this.getText().equals("4")){
+            this.setTextFill(Color.web("#cc00cc"));
+        }
+        if(this.getText().equals("5")){
+            this.setTextFill(Color.web("#990000"));
+        }
+        if(this.getText().equals("6")){
+            this.setTextFill(Color.web("#006666"));
+        }
+        if(this.getText().equals("7")){
+            this.setTextFill(Color.web("#ff6600"));
+        }
+        if(this.getText().equals("8")){
+        }
+    }
 }
 
-
-
-/*things to work on:
-2. Restart button
-    a. Should be located either on the gameboard or on a different scene
-    b. basically just restart the game 
-3. You Loose/ You Win messages
-4. Bomb number adjuster
-    a. specifies the number of bombs someone wants in the game
-5. Flag # show-er
-ALSO
-
-we should lock the size of each board so that it doesn't adjust
-*/
+//shouldn't be able to flag a tile that's been searched
+//shouldn't be able to open any more tiles when the game is over

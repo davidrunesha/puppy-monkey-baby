@@ -65,11 +65,11 @@ public class SettingsPanelController implements Initializable {
         
     //2-d array of tiles w/ width and height = numOfTiles
     public static Tile[][] gridArray = new Tile[0][0];
-    
+   
     Image smileImage = new Image(getClass().getResourceAsStream("smiley.png"));
     static Image repeatBombImage = new Image(SettingsPanelController.class.getResourceAsStream("bomb.png"));
     
-    public static int numNotBombTiles = 0;
+    public static boolean isGameOver = false;
         
     private GridPane root;
     public void findNumOfTiles(){
@@ -93,8 +93,6 @@ public class SettingsPanelController implements Initializable {
        root.setPadding(insets);
        
        this.findNumOfTiles();
-       
-       numNotBombTiles = numOfTiles - (int) NUM_BOMBS;
        //changes the tile array size depending on the number of tiles
        gridArray = new Tile[numOfTiles][numOfTiles];
        
@@ -172,14 +170,16 @@ public class SettingsPanelController implements Initializable {
                         gridArray[Y_POS + k][X_POS + i].setStyle("-fx-font: 14 arial; -fx-base: #c0c3bd;");
                     }
                     */
-                    numNotBombTiles--;
+                    
                 }   
             }
         }
         tile.setText("" + numBombs);
         tile.setFont(Font.font(14));
+        tile.coloredNum();
         return numBombs;
     }    
+    
     public static void clearZeros(Tile tile){   
         //start at the leftmost corner of the tile (w/ value 0) and check if it has adjacent bombs
         //base case = if the tile when coming backward has been searched            
@@ -192,6 +192,7 @@ public class SettingsPanelController implements Initializable {
                     }else{
                         tile.beenSearched = true;
                         gridArray[Y_POS + k][X_POS + i].setStyle("-fx-font: 14 arial; -fx-base: #d8d8d8;");
+                        gridArray[Y_POS + k][X_POS + i].coloredNum();
                         int numBombs = SettingsPanelController.getAdjacentBombs(gridArray[Y_POS + k][X_POS + i]);
                         if(numBombs == 0){
                             SettingsPanelController.clearZeros(gridArray[Y_POS + k][X_POS + i]);
@@ -224,15 +225,17 @@ public class SettingsPanelController implements Initializable {
         //Parent root = FXMLLoader.load(getClass().getResource("GameView.fxml"));
         Scene GAME_BOARD_SCENE = new Scene(createGameBoard());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        
+        stage.setResizable(false);
         stage.setScene(GAME_BOARD_SCENE);
         stage.show();
         
         restartButton1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){ 
+                SettingsPanelController.isGameOver = false;
                 Scene RESTARTED_GAME_BOARD_SCENE = new Scene(createGameBoard());
                 stage.setScene(RESTARTED_GAME_BOARD_SCENE);
+                stage.setResizable(false);
                 stage.show();
             }        
         });
