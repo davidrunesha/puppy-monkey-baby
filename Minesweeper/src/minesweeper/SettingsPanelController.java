@@ -66,7 +66,7 @@ public class SettingsPanelController implements Initializable {
     //2-d array of tiles w/ width and height = numOfTiles
     public static Tile[][] gridArray = new Tile[0][0];
    
-    Image smileImage = new Image(getClass().getResourceAsStream("smiley.png"));
+    Image smileImage = new Image(getClass().getResourceAsStream("smile.png"));
     static Image repeatBombImage = new Image(SettingsPanelController.class.getResourceAsStream("bomb.png"));
     
     public static boolean isGameOver = false;
@@ -192,8 +192,9 @@ public class SettingsPanelController implements Initializable {
                     if(gridArray[Y_POS + k][X_POS + i].beenSearched == true){
                     }else{
                         tile.beenSearched = true;
-                        gridArray[Y_POS + k][X_POS + i].setStyle("-fx-font: 14 arial; -fx-base: #d8d8d8;");
                         gridArray[Y_POS + k][X_POS + i].coloredNum();
+                        gridArray[Y_POS + k][X_POS + i].setStyle("-fx-font: 14 arial; -fx-base: #d8d8d8;");
+                        
                         int numBombs = SettingsPanelController.getAdjacentBombs(gridArray[Y_POS + k][X_POS + i]);
                         if(numBombs == 0){
                             SettingsPanelController.clearZeros(gridArray[Y_POS + k][X_POS + i]);
@@ -225,10 +226,20 @@ public class SettingsPanelController implements Initializable {
     private void handleButtonAction(ActionEvent event) throws IOException{
         //Parent root = FXMLLoader.load(getClass().getResource("GameView.fxml"));
         Scene GAME_BOARD_SCENE = new Scene(createGameBoard());
+        Parent newRoot = FXMLLoader.load(getClass().getResource("Instructions.fxml"));
+        Scene scene = new Scene(newRoot);
+        
+        //for game board
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         stage.setScene(GAME_BOARD_SCENE);
         stage.show();
+        
+        //for intructions
+        Stage instructStage = new Stage();
+        instructStage.setResizable(false);
+        instructStage.setScene(scene);
+        instructStage.show();
         
         restartButton1.setOnAction(new EventHandler<ActionEvent>() {
             @Override

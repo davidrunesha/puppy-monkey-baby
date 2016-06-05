@@ -91,7 +91,6 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
                     }
         
                 }
-    
         }     
       }
     }

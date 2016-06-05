@@ -4,25 +4,26 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="291.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minesweeper.SettingsPanelController">
    <children>
       <ChoiceBox fx:id="difficultyChoiceBox" layoutX="382.0" layoutY="133.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" />
-      <Label layoutX="418.0" layoutY="108.0" prefHeight="27.0" prefWidth="77.0" text="Difficulty " textAlignment="CENTER">
+      <Label layoutX="416.0" layoutY="95.0" prefHeight="27.0" prefWidth="82.0" text="Difficulty " textAlignment="CENTER">
          <font>
-            <Font size="18.0" />
+            <Font name="Asimov" size="19.0" />
          </font>
       </Label>
-      <Button layoutX="246.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="73.0" prefWidth="109.0" text="Begin" textAlignment="CENTER" textFill="#16a300">
+      <Button layoutX="240.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="75.0" prefWidth="120.0" text="Begin" textAlignment="CENTER" textFill="#16a300">
          <font>
-            <Font size="27.0" />
+            <Font name="Alien Encounters" size="27.0" />
          </font>
       </Button>
-      <Label layoutX="96.0" layoutY="108.0" prefHeight="25.0" prefWidth="150.0" text="Number of Bombs">
+      <Label layoutX="97.0" layoutY="95.0" prefHeight="25.0" prefWidth="150.0" text="Number of Bombs">
          <font>
-            <Font size="18.0" />
+            <Font name="Asimov" size="19.0" />
          </font>
       </Label>
       <Slider fx:id="numOfBombsSlider" layoutX="26.0" layoutY="133.0" majorTickUnit="5.0" max="40.0" minorTickCount="5" prefHeight="47.0" prefWidth="291.0" showTickLabels="true" showTickMarks="true" />
@@ -33,4 +34,7 @@
       </Label>
       <Label layoutX="358.0" layoutY="165.0" prefHeight="17.0" prefWidth="150.0" text="You didn't pick a difficulty!" textFill="#f60909" visible="false" />
    </children>
+   <effect>
+      <ColorAdjust contrast="0.09" />
+   </effect>
 </AnchorPane>
