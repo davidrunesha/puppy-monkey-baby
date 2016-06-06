@@ -62,6 +62,8 @@ public class SettingsPanelController implements Initializable {
     public double NUM_BOMBS;
    
     public static int NUM_FLAGS;
+    
+    public static int NUM_NOT_BOMBS = 0;
         
     //2-d array of tiles w/ width and height = numOfTiles
     public static Tile[][] gridArray = new Tile[0][0];
@@ -72,6 +74,7 @@ public class SettingsPanelController implements Initializable {
     public static boolean isGameOver = false;
         
     private GridPane root;
+    
     public void findNumOfTiles(){
         if(difficultyChoiceBox.getValue().equals("Easy")){
             numOfTiles = 10;
@@ -147,10 +150,13 @@ public class SettingsPanelController implements Initializable {
         for(int i = 0; i < numOfTiles; i++){
              for(int j = 0; j < numOfTiles; j++){
                 if(gridArray[j][i].ifBomb()){
-                   NUM_FLAGS++;
+                    NUM_FLAGS++;
+                }else if(gridArray[j][i].ifBomb() == false){
+                    NUM_NOT_BOMBS++;
                 }
             }
         }
+        
         return root;
     }
 
@@ -165,12 +171,12 @@ public class SettingsPanelController implements Initializable {
                 if(X_POS + i >= 0 && X_POS + i < gridArray.length && Y_POS + k >= 0 && Y_POS + k < gridArray.length){
                     if(gridArray[Y_POS + k][X_POS + i].ifBomb()){
                         numBombs++;
+                        
+                    }else{
+                        if(gridArray[Y_POS + k][X_POS + i].beenSearched==false){
+                             NUM_NOT_BOMBS--;
+                        }
                     }
-                    /*if(!gridArray[Y_POS + k][X_POS + i].ifBomb()){
-                        gridArray[Y_POS + k][X_POS + i].setStyle("-fx-font: 14 arial; -fx-base: #c0c3bd;");
-                    }
-                    */
-                    
                 }   
             }
         }

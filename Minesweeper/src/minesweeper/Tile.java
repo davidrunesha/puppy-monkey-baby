@@ -35,6 +35,8 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
     private String text;
     public boolean beenSearched = false;
     public boolean hasFlag = false;
+    
+    
     Image bombImage = new Image(getClass().getResourceAsStream("bomb.png"));
     Image flagImage = new Image(getClass().getResourceAsStream("flag.png"));
     
@@ -68,7 +70,19 @@ public class Tile extends Button implements EventHandler<MouseEvent>{
                     if (adjacentBombs == 0) {
                         SettingsPanelController.clearZeros(this);
                     }
-                //System.out.println("I left clicked");
+                    /*
+                    for(int i = 0; i < SettingsPanelController.numOfTiles; i++){
+                        for(int j = 0; j < SettingsPanelController.numOfTiles; j++){
+                            if (){
+                            
+                            }
+                        }
+                    }
+                    */
+                }
+
+                if(SettingsPanelController.NUM_NOT_BOMBS == 0){
+                    JOptionPane.showMessageDialog(null, "You Winnnnn!!");
                 }
             }
             
